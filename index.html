@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIGGY-BANK</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login_area">
+        <h1 class="text-center">Welcome to the PIGGY bank</h1>
+        <div class="submit_area">
+            <h4>Login</h4>
+            <input type="email" class="form-control" placeholder="Email">
+            <br>
+            <input type="password" class="form-control" placeholder="Password">
+            <br>
+            <button id="login" type="submit" class="btn btn-success">Enter</button>
+
+        </div>
+    </div>
+
+    <!--Page 2-->
+    <div id="pg">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentdeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currentwithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currentbalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit_area">
+                    <h4>Deposit</h4>
+                    <input id="depositamount" type="number" class="form-control" placeholder="$ amount you want to deposit">
+                    <br>
+                    <button id="depositbtn" class="btn btn-success" type="submit">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit_area">
+                    <h4>Withdraw</h4>
+                    <input id="withdrawamount" type="number" class="form-control" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button id="withdrawbtn" class="btn btn-success" type="submit">Withdraw</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <script>
+        // Login button event handler
+        const lgn = document.getElementById('login');
+        lgn.addEventListener('click',function(){
+            var gayeb = document.getElementById('login_area');
+            gayeb.style.display = 'none';
+            document.getElementById('pg').style.display = 'block';
+        })
+
+        //Deposit button event handler
+        const depositbtn = document.getElementById('depositbtn');
+        depositbtn.addEventListener('click',function(){
+            var depositamount = document.getElementById('depositamount').value;
+            var a =parseInt(depositamount);
+            updatespantextAfterDeposit('currentdeposit',a);
+            updatespantextAfterDeposit('currentbalance',a);
+            document.getElementById('depositamount').value="";
+        })
+        function updatespantextAfterDeposit(id,a){
+            var current = document.getElementById(id).innerText;
+            var b =parseInt(current);
+            var total = a+b;
+            document.getElementById(id).innerText=total;
+
+        }
+
+        //Withdraw button event handler
+        const withdrawbtn = document.getElementById('withdrawbtn');
+        withdrawbtn.addEventListener('click',function(){
+            var depositamount = document.getElementById('withdrawamount').value;
+            var a =parseInt(depositamount);
+            updatespantextAfterWithdraw('currentwithdraw',a);
+            updatespantextAfter('currentbalance',a);
+            document.getElementById('withdrawamount').value="";
+        })
+        function updatespantextAfterWithdraw(id,a){
+            var current = document.getElementById(id).innerText;
+            var b =parseInt(current);
+            var total = a+b;
+            document.getElementById(id).innerText=total;
+
+        }
+        function updatespantextAfter(id,a){
+            var current = document.getElementById(id).innerText;
+            var b =parseInt(current);
+            var total = b-a;
+            document.getElementById(id).innerText=total;
+
+        }
+        
+
+
+
+    </script>
+</body>
+</html>
